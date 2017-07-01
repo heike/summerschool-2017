@@ -1,0 +1,196 @@
+---
+title: "Motivating Example"
+subtitle: "Midwest Big Data Summer School"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    transition: default
+    widescreen: true
+css:
+  styles.css
+---
+
+## Motivating Example
+
+- Kick things off by looking at a real data set in R
+- Goal: get the flavor of using R for data management and exploration
+- Don't worry about understanding all the coding right away
+- We will come back to see how everything works in detail
+
+## Tips Dataset
+
+- Tips data set recorded by a server in a restaurant over a span of about 10 weeks
+- Server recorded several variables about groups he served:
+    - Amount he was tipped
+    - Overall bill
+    - Several characteristics about the groups being served
+- __Primary Question__: How do these variable influence the amount being tipped?
+
+- Follow along (copy & paste the code into the console):
+```{r, eval = FALSE}
+curl::curl_download(
+  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/code/1-example.R",
+  "1-example.R"
+)
+file.edit("1-example.R")
+```
+
+
+## First look at data in R
+
+Lets use R to look at the top few rows of the tips data set. First, we load the tips data  `read.csv`:
+
+```{r}
+tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
+```
+
+Now, we use the `head` function to look at the first 6 rows of the data:
+
+```{r}
+head(tips)
+```
+
+## Tips Data Attributes
+
+How big is this data set and what types of variables are in each column?
+
+```{r}
+str(tips)
+```
+
+## Tips Variables
+
+Let's get a summary of the values for each variable in tips:
+
+```{r}
+summary(tips)
+```
+
+# How does the overall amount affect the tip?
+
+## Scatterplots: tip versus total bill 
+
+First, we need to install and load `ggplot2`:
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+```{r, echo=FALSE}
+library(ggplot2)
+```
+
+```{r, fig.height=3, fig.width=7}
+qplot(x = total_bill, y = tip, geom = "point", data = tips)
+```
+
+## 
+
+```{r, fig.height=3, fig.width=7, echo = FALSE}
+qplot(x = total_bill, y = tip, geom = "point", data = tips)
+```
+
+There is a surprising amount of scatter!
+
+Correlation is below 0.70
+```{r}
+cor(tips$total_bill, tips$tip)
+```
+
+
+## Points and Line
+
+Add linear regression line to the plot
+
+```{r, fig.height=4, fig.width=7}
+qplot(total_bill, tip, geom = "point", data = tips) + 
+    geom_smooth(method = "lm")
+```
+
+## Closer Look
+
+```{r, fig.height=5, fig.width=5, echo = FALSE}
+qplot(x = total_bill, y = tip, geom = "point", data = tips) +
+  scale_y_continuous(breaks=0:10)
+```
+
+What do the horizontal lines mean?
+
+
+## More Scatterplots
+
+Color the points by lunch and dinner groups
+
+```{r, fig.height=4, fig.width=7}
+qplot(total_bill, tip, geom = "point", data = tips, colour = time)
+```
+
+
+## Rate of Tipping
+
+Tipping is generally done using a rule of thumb based on a percentage of the total bill. We  create a new variable in the data set for the tipping rate = tip / total bill
+
+```{r}
+tips$rate <- tips$tip / tips$total_bill
+
+summary(tips$rate)
+```
+
+## Tipping Rate Histogram
+
+Lets look distribution of tipping rate values with a histogram
+
+```{r, fig.height=4, fig.width=7}
+qplot(rate, data = tips, binwidth = .01)
+```
+
+## Someone is an AMAZING tipper...
+
+One person tipped over 70%, who are they?
+
+```{r}
+tips[which.max(tips$rate),]
+```
+
+## Gender differences?
+
+Color the points by gender of the person who pays the bill
+
+```{r, fig.height=4, fig.width=7}
+qplot(total_bill, tip, geom = "point", data = tips, colour = sex)
+```
+
+## Rates by Gender
+
+Look at the average tipping rate for men and women seperately
+
+```{r}
+mean(tips$rate[tips$sex == "Male"])
+mean(tips$rate[tips$sex == "Female"])
+```
+
+
+## Statistical Significance
+
+There is a difference but is it statistically significant?
+
+```{r}
+t.test(rate ~ sex, data = tips)
+```
+
+## Multiple co-variates
+
+We can use facetting to find whether rates of tipping depend on gender and smoking
+```{r, fig.height=4, fig.width=4}
+qplot(total_bill, tip, geom = "point", data = tips, facets=smoker~sex) 
+```
+
+## Your Turn {data-background=#527a7a}
+
+Try playing with chunks of code from this session to further investigate the tips data:
+
+1. Get a summary of the total bill values
+2. Find the average tip value for smokers
+3. Get scatterplots of tip versus total bill  for different days of the week

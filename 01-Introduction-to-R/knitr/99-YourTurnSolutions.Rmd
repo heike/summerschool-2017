@@ -1,0 +1,213 @@
+---
+title: "Your Turn Solutions"
+author: "Heike Hofmann, Eric Hare"
+date: "June 21, 2016"
+output: html_document
+---
+
+## Motivating Example
+
+Try playing with chunks of code from this session to further investigate the tips data:
+
+1. Get a summary of the total bill values
+
+```{r}
+tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
+
+summary(tips$total_bill)
+```
+
+2. Find the average tip value for smokers
+
+```{r}
+tips$rate <- tips$tip / tips$total_bill
+mean(tips$rate[tips$smoker=="Yes"])
+```
+
+3. Get scatterplots of tip versus total bill for different days of the week
+
+```{r}
+library(ggplot2)
+
+qplot(total_bill, tip, geom = "point", data = tips, facets=~day)
+```
+
+## R Basics
+
+Using the R Reference Card (and the Help pages, if needed), do the following:
+
+1. Find out how many rows and columns the `iris' data set has.  Figure out at least 2 ways to do this.
+*Hint: "Variable Information" section on the first page of the reference card!*
+
+```{r}
+nrow(iris)
+ncol(iris)
+dim(iris)
+```
+
+2. Use the `rep` function to construct the following vector:  1 1 2 2 3 3 4 4 5 5
+*Hint: "Data Creation" section of the reference card*
+
+```{r}
+rep(1:5, each = 2)
+```
+
+3. Use `rep` to construct this vector: 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5
+
+```{r}
+rep(1:5, times = 3)
+```
+
+1. Find out how many people tipped over 20%.
+*Hint: if you use the `sum` function on a logical vector, it'll return how many TRUEs are in the vector:*
+```{r}
+sum(c(TRUE, TRUE, FALSE, TRUE, FALSE))
+```
+
+```{r}
+sum(tips$rate > .2)
+```
+
+2. **More Challenging**: Calculate the sum of the total bills of anyone who tipped over 20%
+
+```{r}
+sum(tips$total_bill[tips$rate > .2])
+```
+
+1. Read up on the dataset (`?diamonds`)
+2. Plot price by carat (use qplot - go back to the motivating example for help with the syntax)
+
+```{r}
+qplot(carat, price, data = diamonds)
+```
+
+3. Create a variable `ppc` for price/carat. Store this variable as a column in the diamonds data
+
+```{r}
+diamonds$ppc <- diamonds$price / diamonds$carat
+```
+
+4. Make a histogram of all ppc values that exceed $10000 per carat.
+
+```{r}
+qplot(ppc, geom = "histogram", data = diamonds[diamonds$ppc > 10000,])
+```
+
+5. Explore any other interesting relationships you find
+
+## Data Structures
+
+1. Make a data frame with column 1: 1,2,3,4,5,6 and column 2: a,b,a,b,a,b
+
+```{r}
+mydf <- data.frame(col1 = 1:6, col2 = rep(c("a", "b"), times = 3))
+```
+
+2. Select only rows with value "a" in column 2 using logical vector
+
+```{r}
+mydf[mydf$col2 == "a",]
+```
+
+3. `mtcars` is a built in data set like `iris`: Extract the 4th row of the `mtcars` data.
+
+```{r}
+mtcars[4,]
+```
+
+1. Create a list containing a vector and a 2x3 data frame
+
+```{r}
+mylist <- list(vec = 1:6, df = data.frame(x = 1:2, y = 3:4, z = 5:6))
+```
+
+2. Use indexing to select the data frame from your list
+
+```{r}
+mylist[[2]]
+```
+
+3. Use further indexing to select the first row from the data frame in your list
+
+```{r}
+mylist[[2]][1,]
+```
+
+1. View the top 8 rows of mtcars data
+
+```{r}
+head(mtcars, n = 8)
+```
+
+2. What type of object is the mtcars data set?
+
+```{r}
+str(mtcars)
+```
+
+3. How many rows are in the mtcars data set? (try finding this using dim or indexing + length)
+
+```{r}
+dim(mtcars)
+```
+
+4. Summarize the values in each column in the mtcars data set
+
+```{r}
+summary(mtcars)
+```
+
+## Packages and Programming
+
+1. Create a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful)
+
+```{r}
+mean_and_ci <- function(x) {
+    themean <- mean(x)
+    theci <- t.test(x)$conf.int
+    
+    return(list(mean = themean, ci = theci))
+}
+```
+
+2. Add checks to your function to make sure the data is either numeric or logical.  If it is logical convert it to numeric.
+
+```{r}
+mean_and_ci <- function(x) {
+    if (!is.numeric(x) && !is.logical(x)) stop("Need logical or numeric data")
+    
+    x <- as.numeric(x)
+    
+    themean <- mean(x)
+    theci <- t.test(x)$conf.int
+    
+    return(list(mean = themean, ci = theci))
+}
+```
+
+3. Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.
+
+```{r}
+for (i in 1:ncol(diamonds)) {
+    if (is.numeric(diamonds[,i])) print(mean_and_ci(diamonds[,i]))
+}
+```
+
+## RMarkdown Basics
+
+Study the second page of the [R Markdown Reference Guide](rmarkdown-reference.pdf) and go back to the [Hello R Markdown example](hello_rmarkdown.Rmd)
+
+**Easy**: Modify the figure sizing and alignment.
+
+```{r, fig.width=5, fig.height=3, fig.align='center'}
+plot(cars)
+```
+
+**Medium**: Add a figure caption.
+
+```{r, fig.cap='This is a caption'}
+plot(cars)
+```
+
+**Hard**: Can you create an animation? (Hint: look at the `fig.show` chunk option -- you might need to install the **animation** package for this)
+

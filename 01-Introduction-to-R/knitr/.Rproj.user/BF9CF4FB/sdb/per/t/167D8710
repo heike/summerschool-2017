@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "404: Not Found\n",
+    "created" : 1466541963406.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1545433774",
+    "id" : "167D8710",
+    "lastKnownWriteTime" : 1466541970,
+    "last_content_update" : 1466541970,
+    "path" : "~/rwrks/summerschool/01-Introduction-to-R/knitr/2-basics.R",
+    "project_path" : "2-basics.R",
+    "properties" : {
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

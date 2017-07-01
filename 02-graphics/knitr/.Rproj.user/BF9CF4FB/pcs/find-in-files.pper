@@ -1,0 +1,10 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+        ],
+        "path" : "~/rwrks/summerschool/02-graphics/knitr",
+        "query" : "div",
+        "regex" : false
+    }
+}

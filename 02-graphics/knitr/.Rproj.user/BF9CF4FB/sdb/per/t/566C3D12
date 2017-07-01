@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "## ---- echo=FALSE, message=FALSE------------------------------------------\nlibrary(ggplot2)\n\nstates <- map_data(\"state\")\n\n## ---- fig.height=2, fig.width=7------------------------------------------\np <- qplot(carat, price, data = diamonds, colour = clarity); p\n\n## ---- fig.height=2, fig.width=7------------------------------------------\np + theme_bw()\n\n## ---- fig.height=4, fig.width=7------------------------------------------\nlibrary(ggthemes)\np + theme_tufte()\n\n## ---- fig.height=4, fig.width=7------------------------------------------\np + theme_economist() + scale_colour_economist() \n\n## ---- fig.height=4, fig.width=7------------------------------------------\np + theme_excel() + scale_colour_excel()\n\n## ---- fig.height=4, fig.width=7------------------------------------------\np + theme_wsj()\n\n## ---- eval=FALSE---------------------------------------------------------\n## theme_set(theme_bw())\n\n## ------------------------------------------------------------------------\ntheme_bw()\n\n## ---- fig.height=4, fig.width=7------------------------------------------\nqplot(carat, price, data = diamonds) +\n    ggtitle(\"Price vs Carat for Diamonds\")\n\n## ---- fig.height=4, fig.width=7------------------------------------------\np <- qplot(carat, price, data = diamonds) + \n    ggtitle(\"Price vs Carat for Diamonds\")\np + theme(plot.title = element_text(colour = \"red\", angle = 45))\n\n## ---- fig.height=3, fig.width=7------------------------------------------\np + theme(\n    axis.text.x = element_blank(),\n    axis.text.y = element_blank(),\n    axis.title.x = element_blank(),\n    axis.title.y = element_blank(),\n    axis.ticks.length = unit(0, \"cm\")\n)\n\n## ---- eval=FALSE---------------------------------------------------------\n## qplot(price, carat, data = diamonds)\n## \n## ggsave(\"diamonds.png\")\n## ggsave(\"diamonds.pdf\")\n## ggsave(\"diamonds.png\", width = 6, height = 6)\n\n## ---- eval=FALSE---------------------------------------------------------\n## dplot <- qplot(carat, price, data = diamonds)\n## ggsave(\"diamonds.png\", plot = dplot, dpi = 72)\n\n",
+    "created" : 1466720784493.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2061855062",
+    "id" : "566C3D12",
+    "lastKnownWriteTime" : 1466634426,
+    "last_content_update" : 1466634426,
+    "path" : "~/rwrks/summerschool/02-graphics/code/5-PolishingPlots.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

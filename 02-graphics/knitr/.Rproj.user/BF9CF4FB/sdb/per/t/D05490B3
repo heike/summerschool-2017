@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "packages <- c(\"ggplot2\", \"gridExtra\", \"lubridate\",\n              \"maps\",\"ggmap\", \"mapproj\", \"dplyr\", \"ggthemes\", \"knitr\")\n\ninstall.packages(packages, dep=TRUE)\n\nlibrary(ggplot2)\nlibrary(lubridate)\nlibrary(maps)\nlibrary(ggmap)\nlibrary(dplyr)\nlibrary(ggthemes)\nlibrary(knitr)\n\ntoday()\nqplot(rnorm(100), rnorm(100), colour=factor(rbinom(100, 1, 0.5)))\nqplot(rnorm(100), rnorm(100), colour=rbinom(100, 5, 0.2))\n",
+    "created" : 1466627030636.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2625570035",
+    "id" : "D05490B3",
+    "lastKnownWriteTime" : 1466629058,
+    "last_content_update" : 1466629058717,
+    "path" : "~/rwrks/summerschool/02-graphics/code/0-Setup.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

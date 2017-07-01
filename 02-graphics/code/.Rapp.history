@@ -1,0 +1,214 @@
+j <- matrix(c(5, 28, 1, 28, 216, 54, 16, 54, 74), 3, 3)
+j
+j <- matrix(c(5, 28, 1, 28, 216, 54, 16, 54, 74), 3, 3, byrow = F)
+j
+j <- matrix(c(5, 28, 16, 28, 216, 54, 16, 54, 74), 3, 3, byrow = F)
+j
+solve(j)
+b = c(20, 148, 39)
+a <- j
+solve(a, b)
+solve(a, b) -> x
+a %*% x
+b
+apropros("na")
+apropos("na")
+na.exclude
+x <- c(1, 2, 3, NA, 4)
+na.exclude(x)
+na.action
+?na.action
+na.omit(x)
+?na.omit
+na.pass(x)
+dat4rox <- function(..., file = NULL, append = FALSE) {#
+    dat.sets <- as.character(match.call(expand.dots = FALSE)[[2]]) #
+    dat.list <- invisible(lapply(dat.sets, get))#
+    names(dat.list) <- dat.sets#
+    dat.file <- function(dat, name, file = "", append = FALSE) {#
+        x <- "#'"#
+        out <- c("#'", x, "#' A dataset containing", x, "#' \\itemize{", #
+            paste("#'   \\item ", colnames(dat), ".", sep = ""),#
+            "#' }", x, "#' @docType data", "#' @keywords datasets",#
+            paste("#' @name", name), paste0("#' @usage data(", name, ")"),#
+            paste("#' @format A data frame with", nrow(dat), "rows and", #
+                ncol(dat), "variables"), "#' @references", "NULL\n")#
+        cat(paste(out, "\n", collapse=""), file = file, append = append)#
+    }#
+    invisible(lapply(seq_along(dat.list), function(i) {#
+        dat.file(dat.list[[i]], names(dat.list)[i])#
+    }))#
+    if (!is.null(file)) {#
+        apen <- rep(TRUE, length(dat.list))#
+        if (!append) {#
+            apen[1] <- FALSE#
+        }#
+        invisible(lapply(seq_along(dat.list), function(i) {#
+            dat.file(dat.list[[i]], names(dat.list)[i], file = file, append = apen[i])#
+        }))#
+    }#
+}
+dat4rox(mtcars)
+dat4rox(CO2)
+w=c(0.005,0.005,0.006,0.01,0.88,0.03,0.01,0.01,0.005,0.34,0.05)#
+trial<- function(a) {sum(a-w)}#
+trial(0.1)
+trial(c(1,2))
+trial <- Vectorize(trial)
+trial(c(1,2))
+trial(1)
+trial(2)
+string <- "hey guys"
+letters <- strsplit(string, "")
+letters
+ls <- strsplit(string, "")
+rm(letters)
+rm(ls)
+l <- strsplit(string, "")
+match(l, letters)
+match(letters, l)
+l
+l <- strsplit(string, "")[[1]]
+match(letters, l)
+match(l, letters)
+l <- strsplit(string, "")[[1]]
+out <- match(l, letters)
+rot <- (out - 1 + k) %% 26
+new <- letters[rot + 1]
+k <- 0
+rot <- (out - 1 + k) %% 26
+new <- letters[rot + 1]
+new
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- letters[rot + 1]#
+	return(new)#
+}
+encrypt("hey")
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- paste(letters[rot + 1])#
+	return(new)#
+}#
+encrypt("hey")
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- paste0(letters[rot + 1])#
+	return(new)#
+}#
+encrypt("hey")
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- paste(letters[rot + 1], collapse = "")#
+	return(new)#
+}#
+encrypt("hey")
+encrypt("hey you")
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- letters[rot + 1]#
+	new[is.na(new)] <- " "#
+	ans <- paste(new, collapse = "")#
+	return(ans)#
+}#
+encrypt("hey you")
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- letters[rot + 1]#
+	new[is.na(new)] <- " "#
+	ans <- paste(new, collapse = "")#
+	return(ans)#
+}#
+encrypt("hey you", k = 1)
+encrypt("ifz zpv", k = -1)
+encrypt <- function(string, k = 0){#
+	l <- strsplit(string, "")[[1]]#
+	out <- match(l, letters)#
+	rot <- (out - 1 + k) %% 26#
+	new <- letters[rot + 1]#
+	new[is.na(new)] <- " "#
+	ans <- paste(new, collapse = "")#
+	return(ans)#
+}#
+decrypt <- function(string, k = 0){#
+	encrypt(string, k = -k)#
+}#
+encrypt("hey you", k = 1)
+decrypt("ifz zpv", 1)
+encrypt(paste(letters, collapse = ""), 1)
+match
+lapply(strsplit(string, ""), match, table = letters)
+ss <- strsplit(string, "")
+out <- lapply(ss, match, table = letters)
+out
+out - 1
+lapply(out, "-", 1)
+x <- 0:5
+y <- c(0, .2, .3, .6, .9, 1.0)
+plot(x, y, type = "s")
+ecdf
+cdf
+?ecdf
+stepfun
+?stepfun
+j <- stepfun(x, y)
+x
+y
+y <- c(y, 1)
+j <- stepfun(x, y)
+plot(j)
+setwd("Dropbox/Shared Folders/R workshops/02-r-graphics")
+dir()
+setwd("code")
+dir()
+install.packages("ggmap")
+library(ggmap)
+map_center <- c(lon=-95.6, lat=38.2)
+sat_map <- get_map(map_center, zoom=4)
+usa <- ggmap(sat_map, extent = 'normal')
+install.packages("mapproj")
+library(mapproj)
+37/60
+2/60
+map_center <- c(lon=-93.6, lat=42.03)
+sat_map <- get_map(map_center, zoom=6)
+usa <- ggmap(sat_map, extent = 'normal')
+usa
+sat_map <- get_map(map_center, zoom=14)
+usa <- ggmap(sat_map, extent = 'normal')
+usa
+sat_map <- get_map(map_center, zoom=13)
+usa <- ggmap(sat_map, extent = 'normal')
+usa
+map_center <- c(lon=-93.6, lat=42.0)
+sat_map <- get_map(map_center, zoom=13)
+usa <- ggmap(sat_map, extent = 'normal')
+usa
+map_center <- c(lon=-93.6, lat=42.07)#
+sat_map <- get_map(map_center, zoom=13)#
+usa <- ggmap(sat_map, extent = 'normal')#
+usa
+map_center <- c(lon=-93.6, lat=42.03)#
+sat_map <- get_map(map_center, zoom=13)#
+usa <- ggmap(sat_map, extent = 'normal')#
+usa
+map_center <- c(lon=-93.7, lat=42.03)#
+sat_map <- get_map(map_center, zoom=13)#
+usa <- ggmap(sat_map, extent = 'normal')#
+usa
+map_center <- c(lon=-93.63, lat=42.03)#
+sat_map <- get_map(map_center, zoom=13)#
+usa <- ggmap(sat_map, extent = 'normal')#
+usa

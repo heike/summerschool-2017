@@ -1,0 +1,124 @@
+---
+title: "R Packages and Basic Programming"
+subtitle: "Midwest Big Data Summer School"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    transition: default
+    widescreen: true
+css:
+  styles.css
+---
+
+
+## R Packages
+
+- Commonly used R functions are installed with base R
+- R packages containing more specialized R functions can be installed freely from CRAN servers using function `install.packages()`
+- After packages are installed, their functions can be loaded into the current R session using the function `library()`
+
+## Finding R Packages
+
+- How do I locate a package with the desired function?
+- Google ("R project" + search term works well)
+- R website task views to search relevant subjects: http://cran.r-project.org/web/views/
+- ??searchterm will search R help for pages related to the search term
+- `sos` package adds helpful features for searching for packages related to a particular topic
+
+## Handy R Packages
+
+- `ggplot2`: Statistical graphics
+- `dplyr`/`tidyr`: Manipulating data structures
+- `lme4`: Mixed models
+- `knitr`: integrate LaTeX, HTML, or Markdown with R for easy reproducible research
+
+## Creating Your Own Functions
+
+Code Skeleton:
+
+```{r}
+foo <- function(arg1, arg2, ...) {
+    # Code goes here
+    return(output)
+}
+```
+
+Example:
+
+```{r}
+mymean <- function(data) {
+    ans <- sum(data) / length(data)
+    return(ans)
+}
+```
+
+## If/Else Statements
+
+Skeleton:
+
+```{r, eval=FALSE}
+if (condition) {
+    # Some code that runs if condition is TRUE
+} else {
+    # Some code that runs if condition is FALSE
+}
+```
+
+Example:
+
+```{r}
+mymean <- function(data) {
+    if (!is.numeric(data)) {
+        stop("Numeric input is required")
+    } else {
+        ans <- sum(data) / length(data)
+        return(ans)
+    }
+}
+```
+
+## Looping
+
+- Reducing the amount of typing we do can be nice
+- If we have a lot of code that is essentially the same we can take advantage of looping.
+- R offers several loops: for, while, repeat.
+- R supports implicit looping over lists (`apply` functions ... more later)
+
+```{r}
+for (i in 1:3) {
+    print(i)
+}
+```
+
+## For Loops
+
+```{r}
+tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
+
+id <- c("total_bill", "tip", "size")
+for (colname in id) {
+    print(colname)
+}
+
+for(colname in id) {
+    print(paste(colname, mymean(tips[, colname])))
+}
+```
+
+## While Loops
+
+```{r}
+i <- 1
+while (i <= 5) {
+    print(i)
+    i <- i + 1
+}
+```
+
+## Your Turn {data-background=#527a7a}
+
+1. Create a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful)
+2. Add checks to your function to make sure the data is either numeric or logical.  If it is logical convert it to numeric.
+3. Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.
+

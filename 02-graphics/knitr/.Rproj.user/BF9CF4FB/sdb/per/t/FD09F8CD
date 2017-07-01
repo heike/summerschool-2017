@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(ggplot2)\n\nstates <- map_data(\"state\")\n\nload(\"noaa.rdata\")\n\nhead(floats, n = 2)[,1:5]\nhead(floats, n = 2)[,6:10]\nhead(floats, n = 2)[,11:14]\n\nqplot(Longitude, Latitude, colour = callSign, data = floats) + \n    coord_map()\n\nqplot(Longitude, Latitude, colour = callSign, data = gliders) + \n    coord_map()\n\nqplot(Longitude, Latitude, colour = callSign, data = boats) + \n    coord_map()\n\nggplot() +\n    geom_path(data = states, aes(x = long, y = lat, group = group)) + \n    geom_point(data = floats, aes(x = Longitude, y = Latitude, colour = callSign)) +   \n    geom_point(aes(x, y), shape = \"x\", size = 5, data = rig) + \n    geom_text(aes(x, y), label = \"BP Oil Rig\", \n              size = 5, data = rig, hjust = -0.1) + \n    xlim(c(-91, -80)) + ylim(c(22,32)) + coord_map()\n\nqplot(Longitude, Latitude, colour = callSign, data = floats)\n\nggplot(data = floats,\n       aes(x = Longitude, y = Latitude, colour = callSign)) +\n    geom_point() +\n    scale_x_continuous() +\n    scale_y_continuous() +\n    scale_colour_discrete()\n\nggplot(data = floats, \n       aes(x = Longitude, y = Latitude, colour = callSign)) +\n    geom_point()\n\nggplot(aes(x = Depth, y = Temperature, colour = callSign), data = floats) + geom_point()\n\nggplot() +\n    geom_path(data = states, aes(x = long, y = lat, group = group)) + \n    geom_point(data = floats, aes(x = Longitude, y = Latitude, colour = callSign)) +   \n    geom_point(aes(x, y), shape = \"x\", size = 5, data = rig) + \n    geom_text(aes(x, y), label = \"BP Oil Rig\", size = 5, data = rig, hjust = -0.1) + \n    xlim(c(-91, -80)) + \n    ylim(c(22, 32)) + coord_map()\n\nanimal <- read.csv(\"http://heike.github.io/rwrks/02-r-graphics/data/animal.csv\")\n",
+    "created" : 1466631511751.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4264340405",
+    "id" : "FD09F8CD",
+    "lastKnownWriteTime" : 1461462148,
+    "last_content_update" : 1461462148,
+    "path" : "~/rwrks/summerschool/02-graphics/code/3-Layers.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

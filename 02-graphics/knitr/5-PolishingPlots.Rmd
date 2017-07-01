@@ -1,0 +1,163 @@
+---
+title: "Polishing your Plots"
+subtitle: "Midwest Big Data Summer School"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    transition: default
+    widescreen: true
+css:
+  styles.css
+---
+
+```{r, echo=FALSE, message=FALSE}
+library(ggplot2)
+
+states <- map_data("state")
+```
+
+## Visual Appearance
+
+So far have mostly discussed how to get the data displayed the way you want, focusing on the
+essence of the plot.
+
+Themes give you a huge amount of control over the appearance of the plot, the choice of background colours, fonts and so on.
+
+## Built-In Themes
+
+```{r, fig.height=2, fig.width=7}
+p <- qplot(carat, price, data = diamonds, colour = clarity); p
+```
+
+```{r, fig.height=2, fig.width=7}
+p + theme_bw()
+```
+
+## `ggthemes` package
+
+### Tufte theme
+```{r, fig.height=4, fig.width=7}
+library(ggthemes)
+p + theme_tufte()
+```
+
+
+## `ggthemes` package
+
+### Economist theme
+```{r, fig.height=4, fig.width=7}
+p + theme_economist() + scale_colour_economist() 
+```
+
+## `ggthemes` package
+
+### Excel 2003 theme
+
+```{r, fig.height=4, fig.width=7}
+p + theme_excel() + scale_colour_excel()
+```
+
+## `ggthemes` package
+
+### Wall street journal theme
+
+```{r, fig.height=4, fig.width=7}
+p + theme_wsj()
+```
+</div>
+
+## Setting Themes
+
+You can set a theme for all plots:
+
+```{r, eval=FALSE}
+theme_set(theme_bw())
+```
+
+We can also take a look at options for each theme:
+
+```{r}
+theme_bw()
+```
+
+## Plot Title
+
+You can change this for an individual plot
+
+```{r, fig.height=4, fig.width=7}
+qplot(carat, price, data = diamonds) +
+    ggtitle("Price vs Carat for Diamonds")
+```
+
+## Elements
+
+You can make your own theme, or modify an existing one.
+
+Themes are made up of elements which can be one of:
+
+- element_line
+- element_text
+- element_rect
+- element_blank
+
+This gives you a lot of control over plot appearance.
+
+## Elements we can set
+
+- **Axis**: axis.line, axis.text.x, axis.text.y, axis.ticks, axis.title.x, axis.title.y
+- **Legend**: legend.background, legend.key, legend.text, legend.title
+- **Panel**: panel.background, panel.border, panel.grid.major, panel.grid.minor
+- **Strip**: strip.background, strip.text.x, strip.text.y
+
+## Modifying a plot
+
+```{r, fig.height=4, fig.width=7}
+p <- qplot(carat, price, data = diamonds) + 
+    ggtitle("Price vs Carat for Diamonds")
+p + theme(plot.title = element_text(colour = "red", angle = 45))
+```
+
+## Removing Axes
+
+We could also choose to remove all axes (helpful for maps):
+
+```{r, fig.height=3, fig.width=7}
+p + theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.length = unit(0, "cm")
+)
+```
+
+## Saving your Work
+
+The `ggsave()` function will automatically save the last plot produced:
+
+```{r, eval=FALSE}
+qplot(price, carat, data = diamonds)
+
+ggsave("diamonds.png")
+ggsave("diamonds.pdf")
+ggsave("diamonds.png", width = 6, height = 6)
+```
+
+We can also explicitly tell it which plot to save:
+
+```{r, eval=FALSE}
+dplot <- qplot(carat, price, data = diamonds)
+ggsave("diamonds.png", plot = dplot, dpi = 72)
+```
+
+## Your Turn {data-background=#527a7a}
+
+1. Save a pdf of a scatterplot of price vs carat
+2. Open up the pdf in Adobe Acrobat (or another PDF Reader)
+3. Save a png of the same scatterplot
+
+
+## One last demo
+
+https://erichare.shinyapps.io/x3prplus/

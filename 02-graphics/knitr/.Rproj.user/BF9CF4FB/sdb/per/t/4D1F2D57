@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Polishing your Plots\"\nsubtitle: \"Midwest Big Data Summer School\"\nauthor: \"Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare\"\ndate: \"`r Sys.Date()`\"\noutput:\n  ioslides_presentation:\n    transition: default\n    widescreen: true\ncss:\n  styles.css\n---\n\n```{r, echo=FALSE, message=FALSE}\nlibrary(ggplot2)\n\nstates <- map_data(\"state\")\n```\n\n## Visual Appearance\n\nSo far have mostly discussed how to get the data displayed the way you want, focusing on the\nessence of the plot.\n\nThemes give you a huge amount of control over the appearance of the plot, the choice of background colours, fonts and so on.\n\n## Built-In Themes\n\n```{r, fig.height=2, fig.width=7}\np <- qplot(carat, price, data = diamonds, colour = clarity); p\n```\n\n```{r, fig.height=2, fig.width=7}\np + theme_bw()\n```\n\n## `ggthemes` package\n\n### Tufte theme\n```{r, fig.height=4, fig.width=7}\nlibrary(ggthemes)\np + theme_tufte()\n```\n\n\n## `ggthemes` package\n\n### Economist theme\n```{r, fig.height=4, fig.width=7}\np + theme_economist() + scale_colour_economist() \n```\n\n## `ggthemes` package\n\n### Excel 2003 theme\n\n```{r, fig.height=4, fig.width=7}\np + theme_excel() + scale_colour_excel()\n```\n\n## `ggthemes` package\n\n### Wall street journal theme\n\n```{r, fig.height=4, fig.width=7}\np + theme_wsj()\n```\n</div>\n\n## Setting Themes\n\nYou can set a theme for all plots:\n\n```{r, eval=FALSE}\ntheme_set(theme_bw())\n```\n\nWe can also take a look at options for each theme:\n\n```{r}\ntheme_bw()\n```\n\n## Plot Title\n\nYou can change this for an individual plot\n\n```{r, fig.height=4, fig.width=7}\nqplot(carat, price, data = diamonds) +\n    ggtitle(\"Price vs Carat for Diamonds\")\n```\n\n## Elements\n\nYou can make your own theme, or modify an existing one.\n\nThemes are made up of elements which can be one of:\n\n- element_line\n- element_text\n- element_rect\n- element_blank\n\nThis gives you a lot of control over plot appearance.\n\n## Elements we can set\n\n- **Axis**: axis.line, axis.text.x, axis.text.y, axis.ticks, axis.title.x, axis.title.y\n- **Legend**: legend.background, legend.key, legend.text, legend.title\n- **Panel**: panel.background, panel.border, panel.grid.major, panel.grid.minor\n- **Strip**: strip.background, strip.text.x, strip.text.y\n\n## Modifying a plot\n\n```{r, fig.height=4, fig.width=7}\np <- qplot(carat, price, data = diamonds) + \n    ggtitle(\"Price vs Carat for Diamonds\")\np + theme(plot.title = element_text(colour = \"red\", angle = 45))\n```\n\n## Removing Axes\n\nWe could also choose to remove all axes (helpful for maps):\n\n```{r, fig.height=3, fig.width=7}\np + theme(\n    axis.text.x = element_blank(),\n    axis.text.y = element_blank(),\n    axis.title.x = element_blank(),\n    axis.title.y = element_blank(),\n    axis.ticks.length = unit(0, \"cm\")\n)\n```\n\n## Saving your Work\n\nThe `ggsave()` function will automatically save the last plot produced:\n\n```{r, eval=FALSE}\nqplot(price, carat, data = diamonds)\n\nggsave(\"diamonds.png\")\nggsave(\"diamonds.pdf\")\nggsave(\"diamonds.png\", width = 6, height = 6)\n```\n\nWe can also explicitly tell it which plot to save:\n\n```{r, eval=FALSE}\ndplot <- qplot(carat, price, data = diamonds)\nggsave(\"diamonds.png\", plot = dplot, dpi = 72)\n```\n\n## Your Turn {data-background=#527a7a}\n\n1. Save a pdf of a scatterplot of price vs carat\n2. Open up the pdf in Adobe Acrobat (or another PDF Reader)\n3. Save a png of the same scatterplot\n\n\n## One last demo\n\nhttps://erichare.shinyapps.io/x3prplus/",
+    "created" : 1466633325636.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "346560982",
+    "id" : "4D1F2D57",
+    "lastKnownWriteTime" : 1466689917,
+    "last_content_update" : 1466689917473,
+    "path" : "~/rwrks/summerschool/02-graphics/knitr/5-PolishingPlots.Rmd",
+    "project_path" : "5-PolishingPlots.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

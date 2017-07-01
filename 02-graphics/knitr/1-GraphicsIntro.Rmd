@@ -1,0 +1,196 @@
+---
+title: "Basic Plots in ggplot2"
+subtitle: "Midwest Big Data Summer School"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    transition: default
+    widescreen: true
+css:
+  styles.css
+---
+
+```{r, echo=FALSE}
+library(ggplot2)
+```
+
+## Let's Run the Setup File...
+
+You should see a plot appear if setup is successful.
+
+## ggplot2 In a Nutshell
+
+- Wildly popular package for statistical graphics: over 1.75 million downloads from CRAN in 2015 (~ 6,200 times per day)
+- Developed by Hadley Wickham (An ISU Alumni)
+- Designed to adhere to good graphical practices
+- Supports a wide variety plot types
+- Constructs plots using the concept of layers\medskip
+- http://ggplot2.org/book/ or Hadley's book *ggplot2: Elegant Graphics for Data Analysis* for reference material
+
+## *qplot* Function
+
+The *qplot()* function is the basic workhorse of ggplot2
+
+- Produces all plot types available with ggplot2
+- Allows for plotting options within the function statement
+- Creates an object that can be saved
+- Plot layers can be added to modify plot complexity
+
+## *qplot* Structure
+
+The *qplot()* function has a basic syntax:
+
+*qplot(variables, plot type, dataset, options)*
+
+- variables: list of variables used for the plot
+- plot type: specified with a *geom =* statement
+- dataset: specified with a *data =* statement
+- options: there are so, so many options!
+
+## Diamonds Data
+
+We will explore the diamonds data set (preloaded along with ggplot2) using qplot for basic plotting.
+
+The data set was scraped from a diamond exchange company data base by Hadley.  It contains the prices and attributes of over 50,000 diamonds
+
+## Examining the Diamonds Data
+
+What does the data look like?
+
+Lets look at the top few rows of the diamond data frame to find out!
+
+```{r}
+head(diamonds)
+```
+
+## Basic Scatterplot
+
+Basic scatter plot of diamond price vs carat weight
+
+```{r, fig.height=4, fig.width=7}
+qplot(carat, price, geom = "point", data = diamonds)
+```
+
+## Another Scatterplot
+
+Scatter plot of diamond price vs carat weight showing versitility of options in qplot
+
+```{r, fig.height=3, fig.width=7}
+qplot(carat, log(price), geom = "point", data = diamonds, 
+	alpha = I(0.2), colour = color, 
+	main = "Log price by carat weight, grouped by color") + 
+    xlab("Carat Weight") + ylab("Log Price")
+```
+
+## Your Turn {data-background=#527a7a}
+
+All of the your turns for this section will use the tips data set:
+
+```{r}
+tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
+```
+
+1. Use qplot to build a scatterplot of variables tips and total bill
+2. Use options within qplot to color points by smokers
+3. Clean up axis labels and add main plot title
+
+## Basic Histogram
+
+Basic histogram of price
+
+```{r, fig.height=4, fig.width=7}
+qplot(price, geom = "histogram", data = diamonds)
+```
+
+## Why setting the bin width is useful
+
+Histogram of price, binwidth is set to $50 
+
+```{r, fig.height=4, fig.width=7}
+qplot(price, geom = "histogram",  binwidth = 50, data = diamonds)
+```
+
+The gap in prices at around $2000 is due to the scraping procedure.
+
+## Another Histogram
+
+Price histograms faceted by clarity
+
+```{r, fig.height=4, fig.width=7}
+qplot(price, geom = "histogram", data = diamonds, binwidth = 100, facets = .~clarity)
+```
+
+## Your Turn {data-background=#527a7a}
+
+1. Create a new variable in tips data frame rate = tip / total bill
+2. Use qplot to create a histogram of rate
+3. Change the bin width on that histogram to 0.05
+4. Facet this histogram by size of the group
+
+## Basic Boxplot
+
+Side by side boxplot of diamond prices within clarity groupings
+
+```{r, fig.height=4, fig.width=7}
+qplot(clarity, log(price), geom = "boxplot", data = diamonds)
+```
+Why does price decrease as the quality of the diamonds increases?
+
+## Another Boxplot
+
+Side by side boxplot of log prices within clarity groupings with jittered values overlay
+
+```{r, fig.height=3, fig.width=7}
+qplot(clarity, log(price), geom = "boxplot", data = diamonds, 
+	main = "Boxplots of log Diamond Prices Grouped by Clarity") +
+	geom_jitter(alpha = I(.025))
+```
+There are two groups of prices ... maybe related to size?
+
+## Another Boxplot
+
+Side by side boxplot of log prices within clarity groupings 
+
+```{r, fig.height=4, fig.width=7}
+qplot(clarity, log(price)/carat, geom = "boxplot", data = diamonds)
+```
+
+
+
+## Your Turn {data-background=#527a7a}
+
+1. Make side by side boxplots of tipping rate for males and females
+2. Overlay jittered points for observed values onto this boxplot
+
+## Bar Plots
+
+To investigate bar plots we will switch over to the Titanic data set:
+
+```{r}
+titanic <- as.data.frame(Titanic)
+```
+
+Data includes passenger characteristics and survival outcomes for those aboard the RMS Titanic's ill fated maiden voyage
+
+## Basic Bar Plot
+
+Basic bar plot of survival outcomes
+
+```{r, fig.height=4, fig.width=7}
+qplot(Survived, geom = "bar", data = titanic, weight = Freq)
+```
+
+## Another Bar Plot
+
+Bar plot faceted by gender and class
+
+```{r, fig.height=4, fig.width=7}
+qplot(Survived, geom = "bar", data = titanic, weight = Freq, 
+      facets = Sex~Class)
+```
+
+## Your Turn {data-background=#527a7a}
+
+1. Use the tips data to make a barplot for counts of smoking and non smoking customers
+2. Facet using day of week and time of day to view how smoking status changes for different meal times

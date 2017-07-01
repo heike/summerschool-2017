@@ -1,0 +1,495 @@
+---
+title: "Hello woRld"
+subtitle: "E/EBS Honours, Monash University"
+author: "Carson Sievert (cpsievert1@gmail.com, @cpsievert); Di Cook (dicook@monash.edu, @visnut); Heike Hofmann (heike.hofmann@gmail.com, @heike_hh) Barret Schloerke (schloerke@gmail.com, @schloerke)"
+date: "`r Sys.Date()`"
+output:
+  ioslides_presentation:
+    transition: default
+    widescreen: true
+css:
+  styles.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  cache = FALSE,
+  fig.height = 2,
+  fig.width = 5,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# With your neighbor, list some things R _is_ and _does_
+
+### R is ...
+### R does ...
+
+## R is ...
+
+* __Free__ to use
+* __Extensible__
+    * Over 7300 user contributed add-on packages currently on CRAN!
+* __Powerful__
+    * With the right tools, get more work done, faster.
+* __Flexible__
+    * Not a question of _can_, but _how_.
+* __Frustrating__
+    * Flexibility comes at a cost (easy to shoot yourself in the foot!).
+
+```{r, eval = FALSE, echo = FALSE}
+# devtools::install_github("metacran/crandb")
+# pkgs <- crandb::list_packages(limit = 999999)
+# length(pkgs)
+# [1] 7330
+```
+
+## R does ...
+
+* __Graphics, statistics, machine learning, etc.__
+* __Data acquisition, munging, management__
+* __Literate programming (dynamic reports)__
+* __Web applications__
+
+(This roughly serves as our outline. Slides and material can be found at [http://dicook.github.io/Monash-R/](http://dicook.github.io/Monash-R/).)
+
+## RStudio is ...
+
+[From Julie Lowndes](http://jules32.github.io/resources/RStudio_intro/):  
+
+<blockquote>
+<b>If R were an airplane, RStudio would be the airport</b>, providing many, many supporting services that make it easier for you, the pilot, to take off and go to awesome places. Sure, you can fly an airplane without an airport, but having those runways and supporting infrastructure is a game-changer.
+</blockquote>
+
+## The RStudio IDE
+
+<div class="columns-2">
+1. Source editor
+    - Docking station for multiple files
+    - Useful shortcuts ("Knit")
+    - Highlighting/Tab-completion
+    - Code-checking (R, HTML, JS)
+    - Debugging features
+2. Console window
+    - Highlighting/Tab-completion
+    - Search recent commands
+3. Other tabs/panes
+    - Graphics
+    - R documentation
+    - Environment pane
+    - File system navigation/access
+    - Tools for package development, git, etc
+<div>
+
+## Create a project
+
+Create a project to contain all of the material covered in this set of tutorials:
+
+* File -> New Project -> New Directory -> Empty Project
+
+![](createproject.png) 
+
+## Hello R Markdown!
+
+* File -> New File -> R Markdown -> OK -> Knit HTML
+
+<div align="center">
+  <img src="rmarkdown.png" height="600" width="1000">
+</div>
+
+## What is R Markdown?
+
+- From the [R Markdown home page](http://rmarkdown.rstudio.com/):
+
+<blockquote>
+R Markdown is an authoring format that enables easy creation of dynamic documents, presentations, and reports from R. It combines the core syntax of __markdown__ (an easy-to-write plain text format) __with embedded R code chunks__ that are run so their output can be included in the final document. R Markdown documents are fully reproducible (they can be automatically regenerated whenever underlying R code or data changes).
+</blockquote>
+
+- RStudio's [cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) gives a nice, concise overview of its capabilities.
+
+- RStudio's [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) lists its options.
+
+## For your reference
+
+- [Download](index.Rmd), save, and open the document which generates these slides in RStudio (you can do that with this R code):
+
+```{r, eval = FALSE}
+curl::curl_download(
+  "https://raw.githubusercontent.com/dicook/Monash-R/gh-pages/1-Intro/index.Rmd",
+  "index.Rmd"
+)
+file.edit("index.Rmd")
+```
+
+- [Download](index.R), save, and open the corresponding R script.
+
+```{r, eval = FALSE}
+curl::curl_download(
+  "https://raw.githubusercontent.com/dicook/Monash-R/gh-pages/1-Intro/index.R",
+  "index.R"
+)
+file.edit("index.R")
+```
+
+## Some Basics
+
+* Combine values into a vector with `c()`
+
+```{r}
+c(0, 1)
+```
+
+* Assign values to a name with `<-`
+
+```{r}
+x <- c(0, 1)
+```
+
+* Avoid `for` loops and use built-in _vectorized_ functions
+
+```{r}
+sum(x + 10)
+```
+
+* Although arcane at times, `R` has rich support for documentation, see `?sum`
+
+---
+
+* Use `[` to extract elements of a vector.
+
+```{r}
+c("a", "b")[1]
+c("a", "b")[c(T, F)]
+```
+
+* Extract _named_ elements with `$`, `[[`, and/or `[`
+
+```{r}
+x <- list(
+  a = 10,
+  b = c(1, "2")
+)
+x$a
+x[["a"]]
+x["a"]
+```
+
+## Examining 'structure'
+
+* `str()` is probably my favorite `R` function. It shows you the "structure" of _any_ R object (and _everything_ in R is an object!!!)
+
+```{r}
+str(x)
+```
+
+* Lists are heterogenous (elements can have different types)
+* Vectors are homogenous (elements have the same type)
+    * That's why `c(1, "2")` ends up being a character string.
+
+* If you'd like to know more, see Hadley Wickham's online chapters on [data structures](http://adv-r.had.co.nz/Data-structures.html) and [subsetting](http://adv-r.had.co.nz/Subsetting.html)
+
+## Getting Help
+
+* Reading documentation only gets you so far. What about _finding_ function(s) and/or package(s) to help solve a problem???
+
+* Google! (I usually prefix "CRAN" to my search; others might suggest <http://www.rseek.org/>)
+
+* Ask your question on a relevant StackExchange outlet such as  <http://stackoverflow.com/> or <http://stats.stackexchange.com/>
+
+* It's becoming more and more popular to bundle "vignettes" with a package (__dplyr__ has _awesome_ vignettes)
+
+```{r, eval = FALSE}
+browseVignettes("dplyr")
+```
+
+## Some Oddities
+
+* Yes, `+` is a function (which calls compiled C code)
+
+```{r}
+`+`
+```
+
+* What's that? You don't like addition? Me neither!
+
+```{r}
+"+" <- function(x, y) "I forgot how to add"
+1 + 2
+```
+
+* But seriously, don't "overload operators" unless you know what you're doing
+
+```{r}
+rm("+")
+```
+
+## Trust me
+
+<div align="center">
+  <img src="doge.png" width="300" height="500">
+</div>
+
+## Obligatory economics example
+
+```{r}
+data(economics, package = "ggplot2")
+# data frames are essentially a list of vectors
+str(economics)
+```
+
+## Your turn
+
+![](rainbow-lorikeet.png)
+
+Read the documentation for `economics`. Can you think of a interesting/informative function of these variable(s)?
+
+## Hello ggplot2
+
+```{r, fig.height = 3, fig.width = 10}
+library(ggplot2)
+p <- ggplot(economics, aes(date, unemploy / pop)) + 
+  geom_line()
+p
+```
+
+## Hello Linear/Additive Models!
+
+```{r, fig.show = 'hold'}
+p
+p + geom_smooth(method = "lm", se = F)
+p + geom_smooth(method = "loess", se = F)
+p + geom_smooth(method = "gam", formula = y ~ s(x, bs = "cr"), se = F)
+```
+
+## How does `geom_smooth()` work?
+
+```{r}
+m <- lm((unemploy / pop) ~ date, data = economics)
+str(m)
+```
+
+---
+
+```{r, fig.height = 4.5, fig.width = 10}
+economics$yhat <- m$fitted.values
+ggplot(economics) + 
+  geom_line(aes(date, unemploy / pop)) +
+  geom_line(aes(date, yhat), color = "blue")
+```
+
+## Interactive and web-based!
+
+```{r, fig.height = 4.5, fig.width = 10, fig.align = "center"}
+library(plotly)
+ggplotly()
+```
+
+## Your turn
+
+![](rainbow-lorikeet.png)
+
+Make the loess smoother plot without `geom_smooth()` (hint: convert `date` to a numeric vector with `as.numeric()` and use `loess()`). For a solution, see [here](https://github.com/cpsievert/slides/blob/gh-pages/intro/yourTurn1.R)
+
+## Reshaping data
+
+<div align="center">
+  <img src="reshape.png" width="900" height="500">
+</div>
+
+---
+
+```{r, echo = FALSE}
+data(economics)
+```
+
+
+```{r}
+head(economics)
+```
+
+```{r}
+library(tidyr)
+e <- gather(economics, variable, value, -date)
+head(e)
+```
+
+---
+
+```{r, fig.height = 5.5, fig.width = 10}
+ggplot(e, aes(date, value)) + geom_line() +
+  facet_wrap(~ variable, scales = "free_y")
+```
+
+## Split-apply-combine
+
+<div align="center">
+<img src="http://inundata.org/R_talks/meetup/images/splitapply.png" width="750" height="500">
+</div>
+
+[Image by Karthik Ram](http://inundata.org/R_talks/meetup/images/splitapply.png) (adapted from Hadley Wickham, plyr paper)
+
+## Split-apply-combine in dplyr
+
+```{r}
+library(dplyr)
+# add a year column
+e <- mutate(economics, year = format(date, "%Y"))
+# split by year
+e <- group_by(e, year)
+# mean of each group
+summarise(e, mpce = mean(pce))
+```
+
+## Focus on the transformation(s), not the object
+
+```{r}
+economics %>%
+  mutate(year = format(date, "%Y")) %>%
+  group_by(year) %>%
+  summarise(mpce = mean(pce))
+```
+
+## Your turn
+
+![](rainbow-lorikeet.png)
+
+- __Easy__: Find the average annual personal savings rate (`psavert`).
+- __Hard__: Find the annual average for each variable. Can you create a useful visual of this information?
+
+## A new example: babynames
+
+```{r}
+library(babynames)
+head(babynames)
+dim(babynames)
+```
+
+## Write/read csv (or other flat files)
+
+```{r, cache = TRUE}
+library(readr)
+bb_path <- tempfile(fileext = ".csv", tmpdir = ".")
+write_csv(babynames, bb_path)
+read_csv(bb_path)
+```
+
+## Get other formats into R
+
+```{r, eval = FALSE}
+library(readxl)
+read_excel("my-spreadsheet.xls", sheet = "data")
+read_excel("my-spreadsheet.xls", sheet = 2)
+```
+
+```{r, eval = FALSE}
+library(haven)
+# SAS files
+read_sas("path/to/file")
+# SPSS files
+read_por("path/to/file")
+read_sav("path/to/file")
+# Stata files
+read_dta("path/to/file")
+```
+
+## dplyr loves databases
+
+```{r}
+db <- src_sqlite("babynames.sqlite3", create = TRUE)
+if (!db_has_table(db$con, "babynames")) {
+  copy_to(db, babynames)
+}
+```
+
+```{r}
+db
+tbl(db, "babynames")
+```
+
+## Send computation to the data
+
+```{r}
+h <- db %>% 
+  tbl("babynames") %>%
+  filter(name == "Hilary")
+```
+
+```{r}
+class(h)
+h$query
+# execute SQL query and bring into R
+hc <- collect(h)
+class(hc)
+hc
+```
+
+## Interactive graphics
+
+```{r, fig.height = 5, fig.width = 10, cache = FALSE, warning = FALSE}
+plot_ly(hc, x = year, y = prop, color = sex, colors = c("blue", "hotpink"))
+```
+
+## Your turn
+
+Use Rmarkdown to write a one page report, that does these things:
+
+- Loads the babynames package
+- Filters on your name
+- Finds the year when your name was most popular
+- Plots the number of babies born with this name by year and sex
+- Written paragraphs describing what you learn
+
+---
+
+```{r}
+popular <- babynames %>%
+  group_by(name) %>%
+  summarise(N = sum(n)) %>%
+  arrange(desc(N))
+popular
+```
+
+---
+
+```{r}
+top <- top_n(popular, 1000)
+topnames <- subset(babynames, name %in% top[["name"]])
+topnames
+```
+
+---
+
+<iframe src="http://104.131.111.111:3838/topnames/" width="1000" height=800></iframe>
+
+---
+
+```{r, eval = FALSE}
+library(shiny)
+library(ggplot2)
+ui <- bootstrapPage(
+  selectizeInput(
+    inputId = 'name', 
+    label = 'Enter a name', 
+    choices = unique(topnames$name),
+    selected = "James",
+    multiple = TRUE
+  ),
+  plotOutput('plot')
+)
+server <- function(input, output) {
+  output$plot <- renderPlot({ 
+    dat <- subset(topnames, name %in% input$name)
+    ggplot(dat, aes(year, prop, colour = sex)) + 
+      geom_line() + facet_wrap(~ name)
+  })
+}
+runApp(shinyApp(ui, server))
+```
+
+
+# Thanks for coming!
+
+* Materials at [http://dicook.github.io/Monash-R/](http://dicook.github.io/Monash-R/)
+* Resources at [RStudio](https://www.rstudio.com/resources/training/online-learning/)

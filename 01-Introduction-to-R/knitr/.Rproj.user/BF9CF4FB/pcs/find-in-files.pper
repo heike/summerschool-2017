@@ -1,0 +1,10 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+        ],
+        "path" : "~/rwrks/summerschool/01-Introduction-to-R/knitr",
+        "query" : "hofmann.github",
+        "regex" : false
+    }
+}

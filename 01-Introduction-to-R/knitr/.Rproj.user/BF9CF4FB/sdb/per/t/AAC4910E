@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"R Packages and Basic Programming\"\nsubtitle: \"Midwest Big Data Summer School\"\nauthor: \"Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare\"\ndate: \"`r Sys.Date()`\"\noutput:\n  ioslides_presentation:\n    transition: default\n    widescreen: true\ncss:\n  styles.css\n---\n\n\n## R Packages\n\n- Commonly used R functions are installed with base R\n- R packages containing more specialized R functions can be installed freely from CRAN servers using function `install.packages()`\n- After packages are installed, their functions can be loaded into the current R session using the function `library()`\n\n## Finding R Packages\n\n- How do I locate a package with the desired function?\n- Google (\"R project\" + search term works well)\n- R website task views to search relevant subjects: http://cran.r-project.org/web/views/\n- ??searchterm will search R help for pages related to the search term\n- `sos` package adds helpful features for searching for packages related to a particular topic\n\n## Handy R Packages\n\n- `ggplot2`: Statistical graphics\n- `dplyr`/`tidyr`: Manipulating data structures\n- `lme4`: Mixed models\n- `knitr`: integrate LaTeX, HTML, or Markdown with R for easy reproducible research\n\n## Creating Your Own Functions\n\nCode Skeleton:\n\n```{r}\nfoo <- function(arg1, arg2, ...) {\n    # Code goes here\n    return(output)\n}\n```\n\nExample:\n\n```{r}\nmymean <- function(data) {\n    ans <- sum(data) / length(data)\n    return(ans)\n}\n```\n\n## If/Else Statements\n\nSkeleton:\n\n```{r, eval=FALSE}\nif (condition) {\n    # Some code that runs if condition is TRUE\n} else {\n    # Some code that runs if condition is FALSE\n}\n```\n\nExample:\n\n```{r}\nmymean <- function(data) {\n    if (!is.numeric(data)) {\n        stop(\"Numeric input is required\")\n    } else {\n        ans <- sum(data) / length(data)\n        return(ans)\n    }\n}\n```\n\n## Looping\n\n- Reducing the amount of typing we do can be nice\n- If we have a lot of code that is essentially the same we can take advantage of looping.\n- R offers several loops: for, while, repeat.\n- R supports implicit looping over lists (`apply` functions ... more later)\n\n```{r}\nfor (i in 1:3) {\n    print(i)\n}\n```\n\n## For Loops\n\n```{r}\ntips <- read.csv(\"http://heike.github.io/rwrks/01-r-intro/data/tips.csv\")\n\nid <- c(\"total_bill\", \"tip\", \"size\")\nfor (colname in id) {\n    print(colname)\n}\n\nfor(colname in id) {\n    print(paste(colname, mymean(tips[, colname])))\n}\n```\n\n## While Loops\n\n```{r}\ni <- 1\nwhile (i <= 5) {\n    print(i)\n    i <- i + 1\n}\n```\n\n## Your Turn {data-background=#527a7a}\n\n1. Create a function that takes numeric input and provides the mean and a 95% confidence interval for the mean for the data (the t.test function could be useful)\n2. Add checks to your function to make sure the data is either numeric or logical.  If it is logical convert it to numeric.\n3. Loop over the columns of the diamonds data set and apply your function to all of the numeric columns.\n\n",
+    "created" : 1466516798842.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2876683974",
+    "id" : "AAC4910E",
+    "lastKnownWriteTime" : 1466522994,
+    "last_content_update" : 1466522994496,
+    "path" : "~/rwrks/summerschool/01-Introduction-to-R/knitr/4-programming.Rmd",
+    "project_path" : "4-programming.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "## ---- echo=FALSE, message=FALSE------------------------------------------\nlibrary(knitr)\nopts_knit$set(progress = TRUE, verbose = TRUE, width = 50)\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n## ---- message = FALSE----------------------------------------------------\nstates <- map_data(\"state\")\n\nhead(states)\n\n## ---- fig.height=4, fig.width=7------------------------------------------\nqplot(long, lat, geom = \"point\", data = states)\n\n## ---- fig.height=4, fig.width=7------------------------------------------\nqplot(long, lat, geom = \"path\", data = states, group = group) + \n    coord_map()\n\n## ---- fig.height=4, fig.width=7------------------------------------------\nqplot(long, lat, geom = \"polygon\", data = states, group = group) + \n    coord_map()\n\n## ---- tidy= FALSE--------------------------------------------------------\nstatereg <- read.csv(\"https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/data/statereg.csv\", stringsAsFactors = FALSE)\n\nhead(statereg)\n\n## ------------------------------------------------------------------------\nstates.class.map <- left_join(states, statereg, \n                              by = c(\"region\" = \"State\"))\nhead(states.class.map)\n\n## ---- fig.height=4, fig.width=7------------------------------------------\nqplot(long, lat, geom = \"polygon\", data = states.class.map, \n      group = group, fill = StateGroups, colour = I(\"black\")) + \n    coord_map() \n\n## ------------------------------------------------------------------------\nstates.stats <- read.csv(\"http://heike.github.io/rwrks/summerschool/data/states.stats.csv\", stringsAsFactors = FALSE)\nhead(states.stats)\n\n## ------------------------------------------------------------------------\nstates.map <- left_join(states, states.stats, \n                        by = c(\"region\" = \"state.name\"))\nhead(states.map)\n\n## ---- fig.height=4, fig.width=9.5----------------------------------------\nqplot(long, lat, geom = \"polygon\", data = states.map, \n      group = group, fill = avg.qlrest2) + coord_map()\n\n## ------------------------------------------------------------------------\nstates.sex.stats <- read.csv(\"http://heike.github.io/rwrks/02-r-graphics/data/states.sex.stats.csv\", stringsAsFactors = FALSE)\nhead(states.sex.stats)\n\n## ------------------------------------------------------------------------\nstates.sex.map <- left_join(states, states.sex.stats, by = c(\"region\" = \"state.name\"))\nhead(states.sex.map)\n\n## ---- fig.height=4, fig.width=9.5----------------------------------------\nqplot(long, lat, geom = \"polygon\", data = states.sex.map, \n      group = group, fill = avg.drnk) + coord_map() + \n    facet_grid(. ~ sex)\n\n## ------------------------------------------------------------------------\nstates.health.stats <- read.csv(\"http://heike.github.io/rwrks/summerschool/data/states.health.stats.csv\", stringsAsFactors=FALSE)\nstates.map <- left_join(states, states.health.stats, by=c(\"region\"=\"state.name\"))\nqplot(long, lat, fill=no.coverage, geom=\"polygon\", group=group, data=states.map)\n\n## ---- fig.height=3, fig.width=7------------------------------------------\nlibrary(ggthemes)\nqplot(long, lat, geom=\"polygon\", data = states.map, group = group, fill = avg.drnk) + \n  coord_map() +  \n  scale_fill_gradient2(limits = c(1.5, 3),low = \"lightgray\", high = \"red\") + \n  theme_map()  +\n  ggtitle(\"Map of Average Number of Alcoholic Beverages Consumed Per Day by State\") +\n  theme(legend.position=\"right\")\n\n",
+    "created" : 1466714235223.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1845700228",
+    "id" : "EE6A40BD",
+    "lastKnownWriteTime" : 1466776883,
+    "last_content_update" : 1466776883104,
+    "path" : "~/rwrks/summerschool/02-graphics/code/2-PlotMaps.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
