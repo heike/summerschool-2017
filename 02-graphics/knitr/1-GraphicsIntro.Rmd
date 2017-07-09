@@ -1,7 +1,7 @@
 ---
 title: "Basic Plots in ggplot2"
 subtitle: "Midwest Big Data Summer School"
-author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Taikgun Song"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
@@ -17,9 +17,23 @@ library(ggplot2)
 
 ## Let's Run the Setup File...
 
+Copy and paste the code below into your console. Run the code in the file that opens.
+
+```{r, eval = FALSE}
+```{r, eval = FALSE}
+curl::curl_download(
+  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/02-graphics/code/0-Setup.R",
+  "0-Setup.R"
+)
+file.edit("0-Setup.R")
+```
+
 You should see a plot appear if setup is successful.
 
-## ggplot2 In a Nutshell
+
+## ggplot2 in a nutshell
+
+XXX update on CRAN downloads for 2016
 
 - Wildly popular package for statistical graphics: over 1.75 million downloads from CRAN in 2015 (~ 6,200 times per day)
 - Developed by Hadley Wickham (An ISU Alumni)
@@ -91,8 +105,8 @@ All of the your turns for this section will use the tips data set:
 tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
 ```
 
-1. Use qplot to build a scatterplot of variables tips and total bill
-2. Use options within qplot to color points by smokers
+1. Use `qplot` to build a scatterplot of variables `tips` and `total_bill`
+2. Use options within `qplot` to color points by whether a person smokes
 3. Clean up axis labels and add main plot title
 
 ## Basic Histogram

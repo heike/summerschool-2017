@@ -1,7 +1,7 @@
 ---
 title: "R Basics"
 subtitle: "Midwest Big Data Summer School"
-author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Taikgun Song"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
@@ -71,18 +71,18 @@ file.edit("2-basics.R")
     
 ## Creating Objects
 
-We can create an object using the assignment operator `<-`:
+We can create an object using the assignment operator `<-`
 
 ```{r}
 x <- 5
-todays_date <- 21
+y <- 21
 ```
 
 We can then perform any of the functions on these objects:
 
 ```{r}
 log(x)
-todays_date^2
+y^2
 ```
 
 ## Rules for Variable Creation

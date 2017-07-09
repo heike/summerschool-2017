@@ -1,7 +1,7 @@
 ---
 title: "Introduction to R - Hello woRld"
 subtitle: "Midwest Big Data Summer School"
-author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Taikgun Song"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
@@ -22,13 +22,23 @@ knitr::opts_chunk$set(
 
 # What is R? ... and what does it do?
 
+## R  is ...
+
+* <blockquote> a language and environment for statistical computing and graphics
+</blockquote>
+* Most commonly used data science software [kdnuggets](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
+
 ## R is ...
 
-<blockquote> a language and environment for statistical computing and graphics
-</blockquote>
+```{r, eval = TRUE, echo = FALSE}
+# devtools::install_github("metacran/crandb")
+pkgs <- crandb::list_packages(limit = 999999)
+num_pkgs <- length(pkgs)
+```
+
 * __Free__ to use
 * __Extensible__
-    * Over 7300 user contributed add-on packages currently on [CRAN](https://cran.r-project.org/) (The Comprehensive R Archive Network)
+    * `r num_pkgs` user contributed add-on packages currently on [CRAN](https://cran.r-project.org/) (The Comprehensive R Archive Network) (as of `r Sys.Date()`)
     * at least as many packages on github repositories
 * __Powerful__
     * With the right tools, get more work done, faster.
@@ -37,12 +47,7 @@ knitr::opts_chunk$set(
 * __Frustrating__
     * Flexibility comes at a cost (easy to shoot yourself in the foot!).
 
-```{r, eval = FALSE, echo = FALSE}
-# devtools::install_github("metacran/crandb")
-# pkgs <- crandb::list_packages(limit = 999999)
-# length(pkgs)
-# [1] 7330
-```
+
 
 ## R does ...
 
@@ -53,7 +58,7 @@ knitr::opts_chunk$set(
 
 We will touch on all of these aspects.
 Slides and material are available at
- [http://heike.github.io/rwrks/summerschool](http://heike.github.io/rwrks/summerschool/).
+ http://heike.github.io/summerschool-2017
 
 
 ## Installing R
@@ -130,9 +135,12 @@ R Markdown is an authoring format that enables easy creation of dynamic document
 
 - RStudio's [reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) lists its options.
 
-## For your reference
+## Following along
 
-- [Download](knitr/0-getting-started.Rmd), save, and open the document which generates these slides in RStudio (you can do that with this R code):
+- [Download the zip file](http://heike.github.io/summerschool-2017), save, and open the document which generates these slides in RStudio (you can do that with this R code):
+
+XXX screen shot of github, screen shot of rstudio files. 
+
 
 ```{r, eval = FALSE}
 curl::curl_download(

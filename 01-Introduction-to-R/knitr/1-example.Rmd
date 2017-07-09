@@ -1,7 +1,7 @@
 ---
 title: "Motivating Example"
 subtitle: "Midwest Big Data Summer School"
-author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Taikgun Song"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
@@ -164,7 +164,7 @@ qplot(total_bill, tip, geom = "point", data = tips, colour = sex)
 
 ## Rates by Gender
 
-Look at the average tipping rate for men and women seperately
+Look at the average tipping rate for men and women separately
 
 ```{r}
 mean(tips$rate[tips$sex == "Male"])

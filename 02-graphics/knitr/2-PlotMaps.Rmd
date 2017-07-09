@@ -1,7 +1,7 @@
 ---
 title: "Plotting Map Data"
 subtitle: "Midwest Big Data Summer School"
-author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Eric Hare"
+author: "Heike Hofmann (hofmann@iastate.edu, @heike_hh), Taikgun Song"
 date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
@@ -34,7 +34,7 @@ head(states)
 What needs to be in the data set in order to plot a basic map?
   
 - Need latitude/longitude points for all map boundaries
-- Need to know which boundary group all lat/long points belong
+- Need to know to which boundary/state lat/long points belong
 - Need to know the order to connect points within each group
 
 ## Data for Building Basic State Map
@@ -161,12 +161,12 @@ qplot(long, lat, geom = "polygon", data = states.sex.map,
 
 ## Your Turn {data-background=#527a7a}
 
-- Use `left_join` to combine child healthcare data with maps information. You can load in the child healthcare data with:
-
 ```{r}
 states.health.stats <- read.csv("http://heike.github.io/rwrks/summerschool/data/states.health.stats.csv")
 ```
 
+- The file `states.health.stats` contains information of the percentage of children in each state without healthcare coverage.
+- Use `left_join` to combine child healthcare data with maps information.
 - Use `qplot` to create a map of child healthcare undercoverage rate by state
 
 ## Cleaning Up Your Maps

@@ -1,6 +1,6 @@
 ---
 title: "Your Turn Solutions"
-author: "Heike Hofmann, Eric Hare"
+author: "Heike Hofmann, Taikgun Song"
 date: "June 21, 2016"
 output: html_document
 ---
