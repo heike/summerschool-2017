@@ -1,10 +1,10 @@
 ## ---- echo=FALSE---------------------------------------------------------
-tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/data/tips.csv")
 tips$rate <- tips$tip / tips$total_bill
 
 ## ---- eval = FALSE-------------------------------------------------------
 ## curl::curl_download(
-##   "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/code/2-basics.R",
+##   "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/code/2-basics.R",
 ##   "2-basics.R"
 ## )
 ## file.edit("2-basics.R")
@@ -31,11 +31,11 @@ tips$rate <- tips$tip / tips$total_bill
 
 ## ------------------------------------------------------------------------
 x <- 5
-todays_date <- 21
+y <- 21
 
 ## ------------------------------------------------------------------------
 log(x)
-todays_date^2
+y^2
 
 ## ------------------------------------------------------------------------
 y <- c(1, 5, 3, 2)

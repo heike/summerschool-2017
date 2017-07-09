@@ -33,7 +33,7 @@ for (i in 1:3) {
 }
 
 ## ------------------------------------------------------------------------
-tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/data/tips.csv")
 
 id <- c("total_bill", "tip", "size")
 for (colname in id) {

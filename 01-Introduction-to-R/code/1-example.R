@@ -1,13 +1,12 @@
 ## ---- eval = FALSE-------------------------------------------------------
 ## curl::curl_download(
-##   "https://raw.githubusercontent.com/hofmann/rwrks/gh-pages/01-Introduction-to-R/code/1-example.R",
+##   "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/code/1-example.R",
 ##   "1-example.R"
 ## )
 ## file.edit("1-example.R")
 
 ## ------------------------------------------------------------------------
-#tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
-tips <- read.csv("../../data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/data/tips.csv")
 
 ## ------------------------------------------------------------------------
 head(tips)
@@ -39,7 +38,8 @@ qplot(total_bill, tip, geom = "point", data = tips) +
     geom_smooth(method = "lm")
 
 ## ---- fig.height=5, fig.width=5, echo = FALSE----------------------------
-qplot(x = total_bill, y = tip, geom = "point", data = tips)
+qplot(x = total_bill, y = tip, geom = "point", data = tips) +
+  scale_y_continuous(breaks=0:10)
 
 ## ---- fig.height=4, fig.width=7------------------------------------------
 qplot(total_bill, tip, geom = "point", data = tips, colour = time)

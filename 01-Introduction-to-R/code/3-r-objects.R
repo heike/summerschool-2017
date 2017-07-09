@@ -1,12 +1,12 @@
 ## ---- eval = FALSE-------------------------------------------------------
 ## curl::curl_download(
-##   "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/code/3-r-objects.R",
+##   "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/code/3-r-objects.R",
 ##   "3-r-objects.R"
 ## )
 ## file.edit("3-r-objects.R")
 
 ## ---- echo=FALSE---------------------------------------------------------
-tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/data/tips.csv")
 
 ## ------------------------------------------------------------------------
 # create rate variable in the tips data set:
