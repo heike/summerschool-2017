@@ -13,7 +13,7 @@ css:
 
 
 ```{r, echo=FALSE}
-tips <- read.csv("http://heike.github.io/rwrks/01-r-intro/data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/data/tips.csv")
 tips$rate <- tips$tip / tips$total_bill
 ```
 
@@ -22,7 +22,7 @@ tips$rate <- tips$tip / tips$total_bill
 - Follow along (copy & paste the code into the console):
 ```{r, eval = FALSE}
 curl::curl_download(
-  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/code/2-basics.R",
+  "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/code/2-basics.R",
   "2-basics.R"
 )
 file.edit("2-basics.R")

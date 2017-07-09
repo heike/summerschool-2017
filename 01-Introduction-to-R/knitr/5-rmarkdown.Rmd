@@ -20,7 +20,7 @@ We have been using R markdown in the slides all along, so now we take a closer l
 Follow along (copy & paste the code into the console):
 ```{r, eval = FALSE}
 curl::curl_download(
-  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/knitr/5-rmarkdown.Rmd",
+  "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/knitr/5-rmarkdown.Rmd",
   "5-rmarkdown.Rmd"
 )
 file.edit("5-rmarkdown.Rmd")
@@ -112,7 +112,7 @@ output: html_document
 ---
 ```
 
-In this case, when you click "Knit HTML", RStudio calls `rmarkdown::render("file.Rmd", html_document())`. You can certainly change these default values (see the [source of this presentation](https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/knitr/5-rmarkdown.Rmd)).
+In this case, when you click "Knit HTML", RStudio calls `rmarkdown::render("file.Rmd", html_document())`. You can certainly change these default values (see the [source of this presentation](https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/knitr/5-rmarkdown.Rmd)).
 
 ## What is a code chunk?
 
