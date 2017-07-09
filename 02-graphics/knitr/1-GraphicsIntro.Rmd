@@ -20,9 +20,8 @@ library(ggplot2)
 Copy and paste the code below into your console. Run the code in the file that opens.
 
 ```{r, eval = FALSE}
-```{r, eval = FALSE}
 curl::curl_download(
-  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/02-graphics/code/0-Setup.R",
+  "https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/code/0-Setup.R",
   "0-Setup.R"
 )
 file.edit("0-Setup.R")
@@ -33,9 +32,19 @@ You should see a plot appear if setup is successful.
 
 ## ggplot2 in a nutshell
 
-XXX update on CRAN downloads for 2016
+- Wildly popular package for statistical graphics: by now about 400k monthly downloads from CRAN ( more than 10k times per day)
 
-- Wildly popular package for statistical graphics: over 1.75 million downloads from CRAN in 2015 (~ 6,200 times per day)
+```{r, echo=FALSE}
+library("dlstats")
+
+dframe <- cran_stats("ggplot2")
+ggplot(data = dframe[-nrow(dframe),], aes(x = end, y = downloads)) + geom_point() + geom_line() +
+  ylab("Number of monthly downloads") + xlab("Date") +
+  ggtitle("Number of monthly downloads of ggplot2")
+```
+
+## More on ggplot2
+
 - Developed by Hadley Wickham (An ISU Alumni)
 - Designed to adhere to good graphical practices
 - Supports a wide variety plot types
@@ -102,7 +111,7 @@ qplot(carat, log(price), geom = "point", data = diamonds,
 All of the your turns for this section will use the tips data set:
 
 ```{r}
-tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/tips.csv")
 ```
 
 1. Use `qplot` to build a scatterplot of variables `tips` and `total_bill`

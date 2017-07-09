@@ -19,7 +19,7 @@ states <- map_data("state")
 
 ## Deepwater Horizon Oil Spill
 
-![](https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/02-graphics/knitr/images/satelitepicBPoilspill.png)
+![](https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/knitr/images/satelitepicBPoilspill.png)
 
 ## Datasets
 
@@ -41,7 +41,7 @@ Both data sets have geographic coordinates for ever observation
 
 NOAA data is a .rdata file so we need to read it specially:
 
-1. Download the data from http://heike.github.io/rwrks/summerschool/data/noaa.rdata
+1. Download the data from https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/noaa.rdata
 2. Run the `getwd()` command to find your current working directory
 3. Place noaa.rdata in the directory from step 2.
 4. Run the command below:
@@ -239,7 +239,7 @@ ggplot() +
 1. Read in the animal.csv data:
 
 ```{r}
-animal <- read.csv("http://heike.github.io/rwrks/02-r-graphics/data/animal.csv")
+animal <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/animal.csv")
 ```
 
 2. Plot the location of animal sightings on a map of the region

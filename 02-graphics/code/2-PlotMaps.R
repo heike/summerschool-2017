@@ -22,13 +22,12 @@ qplot(long, lat, geom = "polygon", data = states, group = group) +
     coord_map()
 
 ## ---- tidy= FALSE--------------------------------------------------------
-statereg <- read.csv("https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/data/statereg.csv", stringsAsFactors = FALSE)
+statereg <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/statereg.csv", stringsAsFactors = FALSE)
 
 head(statereg)
 
 ## ------------------------------------------------------------------------
-states.class.map <- left_join(states, statereg, 
-                              by = c("region" = "State"))
+states.class.map <- left_join(states, statereg, by = c("region" = "State"))
 head(states.class.map)
 
 ## ---- fig.height=4, fig.width=7------------------------------------------
@@ -41,8 +40,7 @@ states.stats <- read.csv("http://heike.github.io/rwrks/summerschool/data/states.
 head(states.stats)
 
 ## ------------------------------------------------------------------------
-states.map <- left_join(states, states.stats, 
-                        by = c("region" = "state.name"))
+states.map <- left_join(states, states.stats, by = c("region" = "state.name"))
 head(states.map)
 
 ## ---- fig.height=4, fig.width=9.5----------------------------------------
@@ -63,9 +61,7 @@ qplot(long, lat, geom = "polygon", data = states.sex.map,
     facet_grid(. ~ sex)
 
 ## ------------------------------------------------------------------------
-states.health.stats <- read.csv("http://heike.github.io/rwrks/summerschool/data/states.health.stats.csv", stringsAsFactors=FALSE)
-states.map <- left_join(states, states.health.stats, by=c("region"="state.name"))
-qplot(long, lat, fill=no.coverage, geom="polygon", group=group, data=states.map)
+states.health.stats <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/states.health.stats.csv")
 
 ## ---- fig.height=3, fig.width=7------------------------------------------
 library(ggthemes)

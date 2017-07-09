@@ -59,7 +59,7 @@ ggplot() +
     ylim(c(22, 32)) + coord_map()
 
 ## ------------------------------------------------------------------------
-animal <- read.csv("http://heike.github.io/rwrks/02-r-graphics/data/animal.csv")
+animal <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/animal.csv")
 
 ## ------------------------------------------------------------------------
 library(ggmap)
@@ -67,5 +67,6 @@ gmap <- get_map(location=c(rig$x, rig$y), zoom=6)
 
 ## ------------------------------------------------------------------------
 ggmap(gmap, extent = 'normal') + 
-  geom_point(aes(Longitude, Latitude), shape="+", size=5, colour="black", data=subset(animal, Condition=="Dead"))
+  geom_point(aes(Longitude, Latitude), shape="+", size=5, colour="black", data=subset(animal, Condition=="Dead")) +
+  ggtitle("Crosses indicate locations of sightings of dead bird")
 

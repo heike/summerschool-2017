@@ -1,6 +1,21 @@
 ## ---- echo=FALSE---------------------------------------------------------
 library(ggplot2)
 
+## ---- eval = FALSE-------------------------------------------------------
+## curl::curl_download(
+##   "https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/code/0-Setup.R",
+##   "0-Setup.R"
+## )
+## file.edit("0-Setup.R")
+
+## ---- echo=FALSE---------------------------------------------------------
+library("dlstats")
+
+dframe <- cran_stats("ggplot2")
+ggplot(data = dframe[-nrow(dframe),], aes(x = end, y = downloads)) + geom_point() + geom_line() +
+  ylab("Number of monthly downloads") + xlab("Date") +
+  ggtitle("Number of monthly downloads of ggplot2")
+
 ## ------------------------------------------------------------------------
 head(diamonds)
 
@@ -14,7 +29,7 @@ qplot(carat, log(price), geom = "point", data = diamonds,
     xlab("Carat Weight") + ylab("Log Price")
 
 ## ------------------------------------------------------------------------
-tips <- read.csv("http://heike.github.io/rwrks/summerschool/data/tips.csv")
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/tips.csv")
 
 ## ---- fig.height=4, fig.width=7------------------------------------------
 qplot(price, geom = "histogram", data = diamonds)

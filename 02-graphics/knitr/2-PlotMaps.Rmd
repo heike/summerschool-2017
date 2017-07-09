@@ -81,7 +81,7 @@ We want to incorporate additional information into the plot:
 If a categorical variable is assigned as the fill color then `qplot` will assign different hues for each category. Let's load in a state regions dataset:
 
 ```{r, tidy= FALSE}
-statereg <- read.csv("https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/data/statereg.csv", stringsAsFactors = FALSE)
+statereg <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/statereg.csv", stringsAsFactors = FALSE)
 
 head(statereg)
 ```
@@ -162,7 +162,7 @@ qplot(long, lat, geom = "polygon", data = states.sex.map,
 ## Your Turn {data-background=#527a7a}
 
 ```{r}
-states.health.stats <- read.csv("http://heike.github.io/rwrks/summerschool/data/states.health.stats.csv")
+states.health.stats <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/02-graphics/data/states.health.stats.csv")
 ```
 
 - The file `states.health.stats` contains information of the percentage of children in each state without healthcare coverage.
