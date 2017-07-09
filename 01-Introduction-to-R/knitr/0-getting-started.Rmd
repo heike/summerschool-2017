@@ -137,14 +137,15 @@ R Markdown is an authoring format that enables easy creation of dynamic document
 
 ## Following along
 
-- [Download the zip file](http://heike.github.io/summerschool-2017), save, and open the document which generates these slides in RStudio (you can do that with this R code):
+- [Download the zip file](git@github.com:heike/summerschool-2017.git) with all materials. 
 
-XXX screen shot of github, screen shot of rstudio files. 
+- [Download](knitr/0-getting-started.Rmd) and open the document which generates these slides in RStudio (you can do that with this R code):
+
 
 
 ```{r, eval = FALSE}
 curl::curl_download(
-  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/knitr/0-getting-started.Rmd",
+  "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/knitr/0-getting-started.Rmd",
   "0-getting-started.Rmd"
 )
 file.edit("0-getting-started.Rmd")
@@ -154,7 +155,7 @@ file.edit("0-getting-started.Rmd")
 
 ```{r, eval = FALSE}
 curl::curl_download(
-  "https://raw.githubusercontent.com/heike/rwrks/gh-pages/summerschool/01-Introduction-to-R/code/0-getting-started.R",
+  "https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/code/0-getting-started.R",
   "0-getting-started.R"
 )
 file.edit("0-getting-started.R")
