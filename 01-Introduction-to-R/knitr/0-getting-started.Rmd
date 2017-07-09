@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 * <blockquote> a language and environment for statistical computing and graphics
 </blockquote>
-* Most commonly used data science software [kdnuggets](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
+* with python most commonly used data science software (52.1% versus 52.6%) [kdnuggets](http://www.kdnuggets.com/2017/05/poll-analytics-data-science-machine-learning-software-leaders.html)
 
 ## R is ...
 
