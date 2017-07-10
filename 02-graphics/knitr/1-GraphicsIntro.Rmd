@@ -97,7 +97,7 @@ qplot(carat, price, geom = "point", data = diamonds)
 
 ## Another Scatterplot
 
-Scatter plot of diamond price vs carat weight showing versitility of options in qplot
+Scatter plot of diamond price vs carat weight showing versatility of options in qplot
 
 ```{r, fig.height=3, fig.width=7}
 qplot(carat, log(price), geom = "point", data = diamonds, 
