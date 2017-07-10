@@ -60,6 +60,7 @@ We will touch on all of these aspects.
 Slides and material are available at
  http://heike.github.io/summerschool-2017
 
+#  http://heike.github.io/summerschool-2017
 
 ## Installing R
 
@@ -137,7 +138,7 @@ R Markdown is an authoring format that enables easy creation of dynamic document
 
 ## Following along
 
-- [Download the zip file](git@github.com:heike/summerschool-2017.git) with all materials. 
+- [Go to github repo](https://github.com/heike/summerschool-2017) for all materials. 
 
 - [Download](knitr/0-getting-started.Rmd) and open the document which generates these slides in RStudio (you can do that with this R code):
 
