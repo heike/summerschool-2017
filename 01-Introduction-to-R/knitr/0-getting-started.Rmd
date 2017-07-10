@@ -7,6 +7,8 @@ output:
   ioslides_presentation:
     transition: default
     widescreen: true
+css:
+  styles.css
 ---
 
 ```{r setup, include = FALSE}

@@ -48,6 +48,7 @@ qplot(total_bill, tip, geom = "point", data = tips, colour = time)
 tips$rate <- tips$tip / tips$total_bill
 
 summary(tips$rate)
+summary(tips$total_bill)
 
 ## ---- fig.height=4, fig.width=7------------------------------------------
 qplot(rate, data = tips, binwidth = .01)
@@ -62,9 +63,15 @@ qplot(total_bill, tip, geom = "point", data = tips, colour = sex)
 mean(tips$rate[tips$sex == "Male"])
 mean(tips$rate[tips$sex == "Female"])
 
+mean(tips$rate[tips$smoker == "Yes"])
+mean(tips$rate[tips$smoker == "No"])
+
 ## ------------------------------------------------------------------------
 t.test(rate ~ sex, data = tips)
+t.test(rate ~ smoker, data = tips)
 
 ## ---- fig.height=4, fig.width=4------------------------------------------
 qplot(total_bill, tip, geom = "point", data = tips, facets=smoker~sex) 
+
+qplot(total_bill, tip, geom = "point", data = tips, facets=~day, size=I(4)) 
 
