@@ -108,7 +108,7 @@ qplot(long, lat, geom = "polygon", data = states.class.map,
 To show how was can add numerical information to map plots we will use the BRFSS data
 
 - Behavioral Risk Factor Surveillance System
-- 2008 telephone survey run by the Center for Disease Control (CDC)
+- 2013 telephone survey with approx 500k responses run by the Center for Disease Control (CDC)
 - Ask a variety of questions related to health and wellness
 - Cleaned data with state aggregated values posted on website 
 
@@ -135,6 +135,7 @@ qplot(long, lat, geom = "polygon", data = states.map,
       group = group, fill = avg.qlrest2) + coord_map()
 ```
 
+
 ## BRFSS Data Aggregated by State
 
 ```{r}
@@ -151,9 +152,21 @@ head(states.sex.map)
 
 ## Adding Information
 
-Average number of alcoholic drinks per day by state and gender
+Average number of days with insufficient sleep per day by gender
+
 
 ```{r, fig.height=4, fig.width=9.5}
+qplot(long, lat, geom = "polygon", data = states.sex.map, 
+      group = group, fill = avg.qlrest2) + coord_map() + 
+    facet_grid(. ~ sex)
+```
+
+## Your Turn
+
+Draw a map for the average number of alcoholic drinks per day for each gender
+
+
+```{r, echo = FALSE, eval = FALSE}
 qplot(long, lat, geom = "polygon", data = states.sex.map, 
       group = group, fill = avg.drnk) + coord_map() + 
     facet_grid(. ~ sex)

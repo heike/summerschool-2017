@@ -158,6 +158,15 @@ ggsave("diamonds.png", plot = dplot, dpi = 72)
 3. Save a png of the same scatterplot
 
 
-## One last demo
+## One last Your Turn ...
 
-https://erichare.shinyapps.io/x3prplus/
+- Create a new shiny app
+- Run the app by clicking the 'Run App' button
+- Try out the functionality of the app
+- Open up app.R to see how the app is programmed
+- Use the [Widget Gallery](http://shiny.rstudio.com/gallery/widget-gallery.html) to pick a widget and include it in the app
+
+
+- RStudio offers a fabulous tutorial for programming shiny apps at https://shiny.rstudio.com/tutorial/
+
+
