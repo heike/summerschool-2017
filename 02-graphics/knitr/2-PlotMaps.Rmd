@@ -207,3 +207,19 @@ qplot(long, lat, geom="polygon", data = states.map, group = group, fill = avg.dr
 ## Your Turn {data-background=#527a7a}
 
 Use options to polish the look of your map of child healthcare undercoverage rate by state!
+
+## Adding more data
+
+`us.cities` is an in-built data set that contains information on major cities in the US
+
+```{r}
+qplot(long, lat, geom="polygon", data = states.map, group = group, fill = avg.drnk) + 
+  coord_map() +  
+  scale_fill_gradient2(limits = c(1.5, 3),low = "lightgray", high = "red") + 
+  theme_map()  +
+  ggtitle("Map of Average Number of Alcoholic Beverages Consumed Per Day by State") +
+  theme(legend.position="right") +
+  geom_point(aes(x = long, y=lat), data = us.cities, inherit.aes = FALSE) +
+  ggrepel::geom_label_repel(aes(x = long, y = lat, label = name), data = us.cities[us.cities$pop>100000,], 
+                            inherit.aes = FALSE)
+```
