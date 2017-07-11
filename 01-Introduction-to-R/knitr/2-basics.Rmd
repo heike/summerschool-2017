@@ -133,7 +133,8 @@ Having this open or printed off and near you while working is helpful.
 
 ## Your Turn {data-background=#527a7a}
 
-Using the R Reference Card (and the Help pages, if needed), do the following:
+Using the R Reference Card at https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+ (and the Help pages, if needed), do the following:
 
 1. Find out how many rows and columns the `iris' data set has.  Figure out at least 2 ways to do this.
 *Hint: "Variable Information" section on the first page of the reference card!*
@@ -215,6 +216,9 @@ rate[sad_tip]
 ```
 
 ## Your Turn {data-background=#527a7a}
+```{r, eval = FALSE}
+tips <- read.csv("https://raw.githubusercontent.com/heike/summerschool-2017/master/01-Introduction-to-R/data/tips.csv")
+```
 
 1. Find out how many people tipped over 20%.
 
